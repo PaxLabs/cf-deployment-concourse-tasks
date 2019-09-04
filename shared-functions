@@ -114,6 +114,10 @@ function bosh_interpolate() {
     arguments="${arguments} -l vars-files/${vf}"
   done
 
+  if [ -n "${DRY_RUN}" ]; then
+    arguments="${arguments} --dry-run"
+  fi
+
   if [ -n "${release_name}" ]; then
     if [ -n "${release_tarball_name}" ]; then
       cat << EOF > create-provided-release.yml
